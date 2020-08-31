@@ -58,6 +58,15 @@ public class ActivityUnitDAO {
         }
     }
 	
+    //uso do metodo save para chamar as funções de insert e update, ao retira-la, o código que usa o método deixa de funcionar, já que o metodo chamado/utilizado é o save 
+    public int save(int idUser, ActivityUnit unit) throws SQLException{
+	boolean insert = (unit.getIdActivityUnit() == 0);
+        if(insert){
+            return insert(idUser, unit);
+	}else{
+            return update(idUser, unit)
+        }
+    }
     
     //separação do metodo save que possuia insert e update com intuito de facilitar a compreensão e encontrar possíveis erros
     public int insert(int idUser, ActivityUnit unit) throws SQLException{
