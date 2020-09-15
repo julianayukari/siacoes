@@ -12,7 +12,7 @@ import java.util.List;
 import br.edu.utfpr.dv.siacoes.log.UpdateEvent;
 import br.edu.utfpr.dv.siacoes.model.Department;
 
-public class DepartmentDAO {
+public class DepartmentDAO{
 
     public Department findById(int id) throws SQLException{
         try(Connection conn = ConnectionDAO.getInstance().getConnection();
@@ -33,8 +33,9 @@ public class DepartmentDAO {
     }
 	
 	public List<Department> listAll(boolean onlyActive) throws SQLException{
+			
             try(Connection conn= ConnectionDAO.getInstance().getConnection();
-                    PreparedStatement stmt = conn.createStatement("SELECT department.*, campus.name AS campusName " +
+                    PreparedStatement stmt = conn.prepareStatement("SELECT department.*, campus.name AS campusName " +
 			"FROM department INNER JOIN campus ON campus.idCampus=department.idCampus " + 
                             (onlyActive ? " WHERE department.active=1" : "") + " ORDER BY department.name");
                     ResultSet rs = stmt.executeQuery();){
@@ -65,12 +66,12 @@ public class DepartmentDAO {
 	}
         
         //uso do metodo save para chamar as funções de insert e update, ao retira-la, o código que usa o método deixa de funcionar, já que o metodo utilizado/chamado é o save 
-        public int save(int idUser, ActivityUnit unit) throws SQLException{
-            boolean insert = (unit.getIdActivityUnit() == 0);
+        public int save(int idUser, Department dept) throws SQLException{
+            boolean insert = (dept.getIdDepartment() == 0);
             if(insert){
-                return insert(idUser, unit);
+                return insert(idUser, dept);
             }else{
-                return update(idUser, unit);
+                return update(idUser, dept);
             }
         }
 	

@@ -1,10 +1,10 @@
 ﻿package br.edu.utfpr.dv.siacoes.model;
 
 import java.io.Serializable;
-
 import lombok.Data;
 
-public @Data class Department implements Serializable {
+@Data
+public class Department implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -16,4 +16,17 @@ public @Data class Department implements Serializable {
 	private boolean active;
 	private String site;
 	private String initials;	
+	
+	public Department(){
+		this.setIdDepartment(0);
+		this.setCampus(new Campus());
+		this.setName("");
+		this.setFullName("");
+		this.setLogo(null);
+		this.setActive(true);
+		this.setSite("");
+		this.setInitials("");
+	}
+	
+	
 }

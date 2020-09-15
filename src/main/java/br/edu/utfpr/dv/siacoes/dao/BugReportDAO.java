@@ -1,4 +1,4 @@
-Spackage br.edu.utfpr.dv.siacoes.dao;
+package br.edu.utfpr.dv.siacoes.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +15,7 @@ import br.edu.utfpr.dv.siacoes.model.Module;
 import br.edu.utfpr.dv.siacoes.model.User;
 
 
-public class BugReportDAO {
+public class BugReportDAO{
 	
     public BugReport findById(int id) throws SQLException{
         
@@ -53,12 +53,12 @@ public class BugReportDAO {
     }
         
     //uso do metodo save para chamar as funções de insert e update, ao retira-la, o código que usa o método deixa de funcionar, já que o metodo utilizado/chamado é o save 
-    public int save(int idUser, ActivityUnit unit) throws SQLException{
-        boolean insert = (unit.getIdActivityUnit() == 0);
+    public int save(BugReport bug) throws SQLException{
+        boolean insert = (bug.getIdBugReport() == 0);
             if(insert){
-                return insert(idUser, unit);
+                return insert(bug);
             }else{
-                return update(idUser, unit);
+                return update(bug);
             }
     }
         
