@@ -11,7 +11,7 @@ class DepartmentTest {
 	
 	private final Department depart = new Department();
 	
-	//O método @Before é executado antes do método Test, aqui está sendo criado um nome para poder dar continuidade no Test.
+	//O método @Before é executado antes do método Test, aqui está sendo criado um nome para poder dar continuidade no Test que receberá o nome.
 	@Before
 	void testando() {
 		depart.setName("Computacao");
@@ -19,6 +19,7 @@ class DepartmentTest {
 
 	@Test
 	void test01() {
+		
 		assertEquals("Computacao", depart.getName());
 	}
 	

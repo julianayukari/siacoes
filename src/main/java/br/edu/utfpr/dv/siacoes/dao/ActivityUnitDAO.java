@@ -8,11 +8,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.NotImplementedException;
+
 import br.edu.utfpr.dv.siacoes.log.UpdateEvent;
 import br.edu.utfpr.dv.siacoes.model.ActivityUnit;
 
-public class ActivityUnitDAO {
-    
+public class ActivityUnitDAO extends TemplateMethod<ActivityUnit>{
     public List<ActivityUnit> listAll() throws SQLException{
   
         try(Connection conn = ConnectionDAO.getInstance().getConnection();
@@ -103,4 +104,9 @@ public class ActivityUnitDAO {
 
             return unit;
     }
+
+	@Override
+	public List<ActivityUnit> listAll(boolean onlyActive) throws SQLException {
+		throw new NotImplementedException("method not overridden");
+	}
 }
